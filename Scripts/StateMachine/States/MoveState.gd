@@ -1,0 +1,18 @@
+class_name MoveState
+extends State
+
+
+
+func physics_update(delta):
+	current_character.apply_gravity(delta)
+	current_character.movement(delta)
+	current_character.play_anim(current_character.move_anim)
+	
+	if Input.get_axis("ui_left", "ui_right") == 0:
+		state_machine.change_state(state_machine.get_node("IdleState"))
+	
+	if Input.is_action_just_pressed("jump"):
+		state_machine.change_state(state_machine.get_node("JumpState"))
+	
+	elif Input.is_action_just_pressed("punch"):
+		state_machine.change_state(state_machine.get_node("AttackState"))

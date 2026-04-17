@@ -1,0 +1,339 @@
+[gd_scene format=3 uid="uid://d1yrdryu8kmdg"]
+
+[ext_resource type="Script" uid="uid://dkpq7reh367bn" path="res://Characters/Carlita.gd" id="1_4opgv"]
+[ext_resource type="Texture2D" uid="uid://uadmvyciko25" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick1.png" id="1_67g0p"]
+[ext_resource type="Texture2D" uid="uid://bmt5n1g0xbjtu" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick2.png" id="2_4opgv"]
+[ext_resource type="Script" uid="uid://drs8n7pcg3xbh" path="res://Scripts/StateMachine/StateMachine.gd" id="2_kcl4p"]
+[ext_resource type="Texture2D" uid="uid://bspg07m1nasih" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick3.png" id="3_je1ap"]
+[ext_resource type="Script" uid="uid://cmbr8m1qnrvks" path="res://Scripts/StateMachine/States/IdleState.gd" id="3_nmaov"]
+[ext_resource type="Script" uid="uid://doidc11b6cnkw" path="res://Scripts/StateMachine/States/AttackState.gd" id="4_0hsx4"]
+[ext_resource type="Texture2D" uid="uid://bc0twmqfw8ilj" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick4.png" id="4_s8ngr"]
+[ext_resource type="Script" uid="uid://ck04wwvdfsc3a" path="res://Scripts/StateMachine/States/JumpState.gd" id="5_8g0id"]
+[ext_resource type="Texture2D" uid="uid://6qgpmre6g7qg" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick5.png" id="5_xpexv"]
+[ext_resource type="Script" uid="uid://htvg8kbkp6l6" path="res://Scripts/StateMachine/States/MoveState.gd" id="6_h4kvv"]
+[ext_resource type="Texture2D" uid="uid://do1vm5bwjmorl" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Hurt/hurt1.png" id="6_mk0sg"]
+[ext_resource type="Texture2D" uid="uid://cv61dum6lkga7" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Hurt/hurt2.png" id="7_kcl4p"]
+[ext_resource type="Texture2D" uid="uid://ckqjsfbbj0arl" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump/jump4.png" id="7_mk0sg"]
+[ext_resource type="Script" uid="uid://dcohwipetw5y7" path="res://Scripts/StateMachine/States/AirState.gd" id="7_rpbk7"]
+[ext_resource type="Texture2D" uid="uid://duoka7fct7chn" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab1.png" id="8_tx8vn"]
+[ext_resource type="Texture2D" uid="uid://dflq2bqy050k3" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab2.png" id="9_8ofct"]
+[ext_resource type="Texture2D" uid="uid://xrhl1mmsep28" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab3.png" id="10_yqeom"]
+[ext_resource type="Texture2D" uid="uid://daiocso3qcnoi" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick1.png" id="11_7qdqf"]
+[ext_resource type="Texture2D" uid="uid://caeegjx27s21q" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick2.png" id="12_nmaov"]
+[ext_resource type="Texture2D" uid="uid://be85qilcuubn7" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick3.png" id="13_0hsx4"]
+[ext_resource type="Texture2D" uid="uid://cagweymt4alcy" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump/jump1.png" id="13_kcl4p"]
+[ext_resource type="Texture2D" uid="uid://cko1j5qcmbtqe" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Kick/kick1.png" id="14_8g0id"]
+[ext_resource type="Texture2D" uid="uid://cg20g20jidhau" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump/jump2.png" id="14_tx8vn"]
+[ext_resource type="Texture2D" uid="uid://dhj1iotvbmx20" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump/jump3.png" id="15_8ofct"]
+[ext_resource type="Texture2D" uid="uid://drujkhjlpqkdf" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Kick/kick2.png" id="15_h4kvv"]
+[ext_resource type="Texture2D" uid="uid://cgqmr010iy6p5" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Kick/kick3.png" id="16_rpbk7"]
+[ext_resource type="Texture2D" uid="uid://dalkcuy2bmcq1" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Kick/kick4.png" id="17_lwtps"]
+[ext_resource type="Texture2D" uid="uid://dfwmb2s0o2e5s" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Kick/kick5.png" id="18_fwnvj"]
+[ext_resource type="Texture2D" uid="uid://c8jaruraaok81" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Punch/punch1.png" id="19_avdrc"]
+[ext_resource type="Texture2D" uid="uid://i3paubmk7tvs" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Punch/punch2.png" id="20_b1ekb"]
+[ext_resource type="Texture2D" uid="uid://bbffkp0obvrho" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Punch/punch3.png" id="21_xx4me"]
+[ext_resource type="Texture2D" uid="uid://rmprm7aeerby" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk1.png" id="22_fv1qf"]
+[ext_resource type="Texture2D" uid="uid://dhn784lpvuwo3" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk2.png" id="23_6pkyi"]
+[ext_resource type="Texture2D" uid="uid://dyk4lovitbq6j" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk3.png" id="24_rfjmk"]
+[ext_resource type="Texture2D" uid="uid://e2n1t76r53yl" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk4.png" id="25_f61tv"]
+[ext_resource type="Texture2D" uid="uid://dm0rnikvpfp4o" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk5.png" id="26_yd7ki"]
+[ext_resource type="Texture2D" uid="uid://bdigvyg5hlqlt" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk6.png" id="27_esf02"]
+[ext_resource type="Texture2D" uid="uid://65dng4nq58g2" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk7.png" id="28_b7uds"]
+[ext_resource type="Texture2D" uid="uid://dvt4veo7iluho" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk8.png" id="29_0qcgh"]
+[ext_resource type="Texture2D" uid="uid://ba3isgnmuo7wq" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk9.png" id="30_vo17g"]
+[ext_resource type="Texture2D" uid="uid://chgs7k26cckbc" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Walk/walk10.png" id="31_qu4qp"]
+[ext_resource type="Texture2D" uid="uid://cjs7ksqh1rqii" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle1.png" id="32_or3a6"]
+[ext_resource type="Texture2D" uid="uid://b23v27mqa15rr" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle2.png" id="33_i6t6h"]
+[ext_resource type="Texture2D" uid="uid://c11d6slb1fydm" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle3.png" id="34_d6ncs"]
+[ext_resource type="Texture2D" uid="uid://bflbptc8anq8g" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle4.png" id="35_53far"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wx6mx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_67g0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4opgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_je1ap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s8ngr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xpexv")
+}],
+"loop": false,
+"name": &"dive_kick",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_mk0sg")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_tx8vn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8ofct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yqeom")
+}],
+"loop": false,
+"name": &"highpunch",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mk0sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kcl4p")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 1.1
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_or3a6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_i6t6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_d6ncs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_53far")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_kcl4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_tx8vn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8ofct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mk0sg")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_7qdqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_nmaov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0hsx4")
+}],
+"loop": false,
+"name": &"jumpkick",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_8g0id")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_h4kvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_rpbk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_lwtps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_fwnvj")
+}],
+"loop": false,
+"name": &"lowkick",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_avdrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_b1ekb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_xx4me")
+}],
+"loop": false,
+"name": &"mediumpunch",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_fv1qf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_6pkyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_rfjmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_f61tv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_yd7ki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_esf02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_b7uds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_0qcgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_vo17g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_qu4qp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 9.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67g0p"]
+size = Vector2(22.25, 12.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4opgv"]
+size = Vector2(22, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je1ap"]
+size = Vector2(22.125, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8ngr"]
+size = Vector2(20, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpexv"]
+size = Vector2(20, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0sg"]
+size = Vector2(20, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kcl4p"]
+radius = 11.0
+height = 50.0
+
+[node name="Carlita" type="CharacterBody2D" unique_id=1845756115 node_paths=PackedStringArray("hurtBoxes", "hitboxes", "spriteChar")]
+collision_layer = 8
+script = ExtResource("1_4opgv")
+hurtBoxes = [NodePath("HurtBoxCima"), NodePath("HurtBoxMedio"), NodePath("HurtboxBaixo")]
+hitboxes = [NodePath("HitBoxCima"), NodePath("HitBoxMedio"), NodePath("HitBoxBaixo")]
+spriteChar = NodePath("Sprite")
+
+[node name="StateMachine" type="Node" parent="." unique_id=2084564265 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_kcl4p")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1502229025]
+script = ExtResource("3_nmaov")
+
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=67549703]
+script = ExtResource("4_0hsx4")
+
+[node name="JumpState" type="Node" parent="StateMachine" unique_id=1476848403]
+script = ExtResource("5_8g0id")
+
+[node name="MoveState" type="Node" parent="StateMachine" unique_id=1185180562]
+script = ExtResource("6_h4kvv")
+
+[node name="AirState" type="Node" parent="StateMachine" unique_id=1363579504]
+script = ExtResource("7_rpbk7")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1072040460]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wx6mx")
+animation = &"dive_kick"
+frame = 4
+frame_progress = 1.0
+
+[node name="HurtBoxCima" type="Area2D" parent="." unique_id=373819952]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxCima" unique_id=997053168]
+position = Vector2(-5, -9.375)
+shape = SubResource("RectangleShape2D_67g0p")
+
+[node name="HurtBoxMedio" type="Area2D" parent="." unique_id=423038899]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxMedio" unique_id=1652910171]
+position = Vector2(-4.875, 5)
+shape = SubResource("RectangleShape2D_4opgv")
+
+[node name="HurtboxBaixo" type="Area2D" parent="." unique_id=164460558]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxBaixo" unique_id=1422895644]
+position = Vector2(-4.9375, 23)
+shape = SubResource("RectangleShape2D_je1ap")
+
+[node name="HitBoxCima" type="Area2D" parent="." unique_id=130263461]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxCima" unique_id=1290816376]
+position = Vector2(22, -9)
+shape = SubResource("RectangleShape2D_s8ngr")
+disabled = true
+debug_color = Color(0.9721406, 0.14159712, 0.23650989, 0.41960785)
+
+[node name="HitBoxMedio" type="Area2D" parent="." unique_id=474198267]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxMedio" unique_id=1351455815]
+position = Vector2(22, 6.5)
+shape = SubResource("RectangleShape2D_xpexv")
+disabled = true
+debug_color = Color(0.7750733, 0, 0.20574015, 0.41960785)
+
+[node name="HitBoxBaixo" type="Area2D" parent="." unique_id=1626009249]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxBaixo" unique_id=781043108]
+position = Vector2(22, 23)
+shape = SubResource("RectangleShape2D_mk0sg")
+disabled = true
+debug_color = Color(0.99917775, 0, 0.13451469, 0.41960785)
+
+[node name="Colisao" type="CollisionShape2D" parent="." unique_id=4461323]
+position = Vector2(-4, 9)
+shape = SubResource("CapsuleShape2D_kcl4p")
+debug_color = Color(0.16056219, 0.6448235, 0, 0.41960785)
+
+[connection signal="area_entered" from="HurtBoxCima" to="." method="_on_hurt_box_cima_area_entered"]
+[connection signal="area_entered" from="HurtBoxMedio" to="." method="_on_hurt_box_medio_area_entered"]
+[connection signal="area_entered" from="HurtboxBaixo" to="." method="_on_hurtbox_baixo_area_entered"]
