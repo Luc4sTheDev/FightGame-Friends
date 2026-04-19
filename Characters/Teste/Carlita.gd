@@ -1,6 +1,13 @@
 extends Fighterz
 class_name BonecoTeste
 
+func powerUp():
+	print("Kakaia")
+func powerDown():
+	print("Kukula")
+func powerNeutral():
+	print("Ratalos")
+
 func _on_hurt_box_cima_area_entered(area: Area2D) -> void:
 	var atacante = area.get_parent()
 	if atacante.has_method("takeDamage"):

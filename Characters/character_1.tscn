@@ -1,21 +1,23 @@
 [gd_scene format=3 uid="uid://d1yrdryu8kmdg"]
 
-[ext_resource type="Script" uid="uid://dkpq7reh367bn" path="res://Characters/Carlita.gd" id="1_4opgv"]
+[ext_resource type="Script" uid="uid://dkpq7reh367bn" path="res://Characters/Teste/Carlita.gd" id="1_4opgv"]
 [ext_resource type="Texture2D" uid="uid://uadmvyciko25" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick1.png" id="1_67g0p"]
 [ext_resource type="Texture2D" uid="uid://bmt5n1g0xbjtu" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick2.png" id="2_4opgv"]
-[ext_resource type="Script" uid="uid://drs8n7pcg3xbh" path="res://Scripts/StateMachine/StateMachine.gd" id="2_kcl4p"]
+[ext_resource type="Script" uid="uid://drs8n7pcg3xbh" path="res://Characters/Scripts/StateMachine/StateMachine.gd" id="2_kcl4p"]
 [ext_resource type="Texture2D" uid="uid://bspg07m1nasih" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick3.png" id="3_je1ap"]
-[ext_resource type="Script" uid="uid://cmbr8m1qnrvks" path="res://Scripts/StateMachine/States/IdleState.gd" id="3_nmaov"]
-[ext_resource type="Script" uid="uid://doidc11b6cnkw" path="res://Scripts/StateMachine/States/AttackState.gd" id="4_0hsx4"]
+[ext_resource type="Script" uid="uid://cmbr8m1qnrvks" path="res://Characters/Scripts/StateMachine/States/IdleState.gd" id="3_nmaov"]
+[ext_resource type="Script" uid="uid://doidc11b6cnkw" path="res://Characters/Scripts/StateMachine/States/AttackState.gd" id="4_0hsx4"]
 [ext_resource type="Texture2D" uid="uid://bc0twmqfw8ilj" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick4.png" id="4_s8ngr"]
-[ext_resource type="Script" uid="uid://ck04wwvdfsc3a" path="res://Scripts/StateMachine/States/JumpState.gd" id="5_8g0id"]
+[ext_resource type="Script" uid="uid://ck04wwvdfsc3a" path="res://Characters/Scripts/StateMachine/States/JumpState.gd" id="5_8g0id"]
 [ext_resource type="Texture2D" uid="uid://6qgpmre6g7qg" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick5.png" id="5_xpexv"]
-[ext_resource type="Script" uid="uid://htvg8kbkp6l6" path="res://Scripts/StateMachine/States/MoveState.gd" id="6_h4kvv"]
+[ext_resource type="Script" uid="uid://htvg8kbkp6l6" path="res://Characters/Scripts/StateMachine/States/MoveState.gd" id="6_h4kvv"]
 [ext_resource type="Texture2D" uid="uid://do1vm5bwjmorl" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Hurt/hurt1.png" id="6_mk0sg"]
 [ext_resource type="Texture2D" uid="uid://cv61dum6lkga7" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Hurt/hurt2.png" id="7_kcl4p"]
 [ext_resource type="Texture2D" uid="uid://ckqjsfbbj0arl" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump/jump4.png" id="7_mk0sg"]
-[ext_resource type="Script" uid="uid://dcohwipetw5y7" path="res://Scripts/StateMachine/States/AirState.gd" id="7_rpbk7"]
+[ext_resource type="Script" uid="uid://dcohwipetw5y7" path="res://Characters/Scripts/StateMachine/States/AirState.gd" id="7_rpbk7"]
+[ext_resource type="Script" uid="uid://sidhoacqp70e" path="res://Characters/Scripts/StateMachine/States/PowerState.gd" id="8_0hsx4"]
 [ext_resource type="Texture2D" uid="uid://duoka7fct7chn" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab1.png" id="8_tx8vn"]
+[ext_resource type="Script" uid="uid://rmqigp2m2o1w" path="res://Characters/Scripts/StateMachine/States/SpecialState.gd" id="9_8g0id"]
 [ext_resource type="Texture2D" uid="uid://dflq2bqy050k3" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab2.png" id="9_8ofct"]
 [ext_resource type="Texture2D" uid="uid://xrhl1mmsep28" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab3.png" id="10_yqeom"]
 [ext_resource type="Texture2D" uid="uid://daiocso3qcnoi" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick1.png" id="11_7qdqf"]
@@ -245,6 +247,8 @@ height = 50.0
 [node name="Carlita" type="CharacterBody2D" unique_id=1845756115 node_paths=PackedStringArray("hurtBoxes", "hitboxes", "spriteChar")]
 collision_layer = 8
 script = ExtResource("1_4opgv")
+speed = 200.0
+max_jump = 3
 hurtBoxes = [NodePath("HurtBoxCima"), NodePath("HurtBoxMedio"), NodePath("HurtboxBaixo")]
 hitboxes = [NodePath("HitBoxCima"), NodePath("HitBoxMedio"), NodePath("HitBoxBaixo")]
 spriteChar = NodePath("Sprite")
@@ -267,6 +271,12 @@ script = ExtResource("6_h4kvv")
 
 [node name="AirState" type="Node" parent="StateMachine" unique_id=1363579504]
 script = ExtResource("7_rpbk7")
+
+[node name="PowerState" type="Node" parent="StateMachine" unique_id=1561514017]
+script = ExtResource("8_0hsx4")
+
+[node name="SpecialState" type="Node" parent="StateMachine" unique_id=1799917568]
+script = ExtResource("9_8g0id")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1072040460]
 texture_filter = 1

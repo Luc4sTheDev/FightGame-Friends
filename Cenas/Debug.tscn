@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bbd76s1xb6fal" path="res://Assets/Streets of Fight files/Assets/Stage Layers/tileset.png" id="1_5jonb"]
 [ext_resource type="PackedScene" uid="uid://d1yrdryu8kmdg" path="res://Characters/character_1.tscn" id="2_ixdl1"]
+[ext_resource type="Script" uid="uid://cyeo86c0sy20p" path="res://Characters/Scripts/BattleSystem/battle_system.gd" id="3_lkege"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixdl1"]
 texture = ExtResource("1_5jonb")
@@ -563,7 +564,13 @@ layer_2/name = "Backdrop"
 layer_2/z_index = -2
 
 [node name="Carlita" parent="." unique_id=1845756115 node_paths=PackedStringArray("spriteChar") instance=ExtResource("2_ixdl1")]
-speed = 200.0
-jump = 600.0
-max_jump = 3
 spriteChar = NodePath(".")
+
+[node name="BattleSystem" type="Node2D" parent="." unique_id=43324762]
+script = ExtResource("3_lkege")
+
+[node name="Player1" type="Node2D" parent="BattleSystem" unique_id=1319782173]
+position = Vector2(-167, 0)
+
+[node name="Player2" type="Node2D" parent="BattleSystem" unique_id=1471903168]
+position = Vector2(166, 0)

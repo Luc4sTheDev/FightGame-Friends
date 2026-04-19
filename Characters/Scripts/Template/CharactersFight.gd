@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Fighterz
 
+#data
+@export var char_name: String = " "
+@export var char_icon: Sprite2D = null
 #animacao
 @export var idle_anim: String = "idle"
 @export var move_anim: String = "walk"
@@ -35,6 +38,8 @@ var dano_atual: float = 10.0
 var e_critico_agora: bool = false
 
 var can_attack:bool = true
+var can_power:bool = true
+var can_awaken:bool = true
 
 var combo_timer: float = 0.0
 var combo_reset_time: float = 1.0
@@ -195,3 +200,32 @@ func diveKick():
 func play_anim(anim_name: String):
 	if spriteChar.animation != anim_name:
 		spriteChar.play(anim_name)
+
+func handle_power():
+	if can_power:
+		can_power = false
+		if Input.is_action_pressed("ui_up") and Input.is_action_just_pressed("power") :
+			powerUp()
+		elif Input.is_action_pressed("ui_down") and Input.is_action_just_pressed("power"):
+			powerDown()
+		elif Input.is_action_just_pressed("power"):
+			powerNeutral()
+		await delay(0.5)
+		can_power = true
+
+func handle_special():
+	if can_awaken:
+		can_awaken = false
+		if Input.is_action_pressed("punch") and Input.is_action_pressed("jump"):
+			print("Especial ativado")
+		await delay(0.5)
+		can_awaken = true
+
+func powerUp():
+	pass
+
+func powerNeutral():
+	pass
+
+func powerDown():
+	pass
