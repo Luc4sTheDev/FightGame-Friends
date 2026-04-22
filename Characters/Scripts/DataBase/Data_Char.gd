@@ -3,6 +3,7 @@ extends Resource
 
 @export var char_name: String
 @export var icon: Texture2D
+@export var character_scene: PackedScene
 
 var max_health:float = 100.0
 

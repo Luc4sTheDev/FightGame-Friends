@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FighterData" format=3 uid="uid://dwxehj6dab616"]
+
+[ext_resource type="Script" uid="uid://my475ibh75ew" path="res://Characters/Scripts/DataBase/Data_Char.gd" id="1_aefy7"]
+[ext_resource type="Texture2D" uid="uid://bd8v26m24yhdt" path="res://icon.svg" id="1_sd6p7"]
+
+[sub_resource type="PackedScene" id="PackedScene_sd6p7"]
+
+[resource]
+script = ExtResource("1_aefy7")
+char_name = "Carlita"
+icon = ExtResource("1_sd6p7")
+character_scene = SubResource("PackedScene_sd6p7")
+speed = 200.0
+jump = 600.0
+max_jump = 3
+metadata/_custom_type_script = "uid://my475ibh75ew"

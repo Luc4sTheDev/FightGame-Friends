@@ -2,7 +2,7 @@ class_name IdleState
 extends State
 
 func enter():
-	current_character.play_anim(current_character.idle_anim)
+	current_character.play_anim(current_character.data.idle_anim)
 	current_character.velocity.x = 0
 
 func physics_update(delta):

@@ -2,7 +2,7 @@ class_name JumpState
 extends State
 
 func enter():
-	current_character.play_anim(current_character.jump_anim)
+	current_character.play_anim(current_character.data.jump_anim)
 	current_character.handle_jump() 
 
 func physics_update(delta):

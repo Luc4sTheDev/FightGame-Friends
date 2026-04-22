@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkpq7reh367bn" path="res://Characters/Teste/Carlita.gd" id="1_4opgv"]
 [ext_resource type="Texture2D" uid="uid://uadmvyciko25" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick1.png" id="1_67g0p"]
 [ext_resource type="Texture2D" uid="uid://bmt5n1g0xbjtu" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick2.png" id="2_4opgv"]
+[ext_resource type="Resource" uid="uid://dwxehj6dab616" path="res://Characters/Teste/CarlitaTeste.tres" id="2_h4kvv"]
 [ext_resource type="Script" uid="uid://drs8n7pcg3xbh" path="res://Characters/Scripts/StateMachine/StateMachine.gd" id="2_kcl4p"]
 [ext_resource type="Texture2D" uid="uid://bspg07m1nasih" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Dive_kick/dive_kick3.png" id="3_je1ap"]
 [ext_resource type="Script" uid="uid://cmbr8m1qnrvks" path="res://Characters/Scripts/StateMachine/States/IdleState.gd" id="3_nmaov"]
@@ -247,8 +248,7 @@ height = 50.0
 [node name="Carlita" type="CharacterBody2D" unique_id=1845756115 node_paths=PackedStringArray("hurtBoxes", "hitboxes", "spriteChar")]
 collision_layer = 8
 script = ExtResource("1_4opgv")
-speed = 200.0
-max_jump = 3
+data = ExtResource("2_h4kvv")
 hurtBoxes = [NodePath("HurtBoxCima"), NodePath("HurtBoxMedio"), NodePath("HurtboxBaixo")]
 hitboxes = [NodePath("HitBoxCima"), NodePath("HitBoxMedio"), NodePath("HitBoxBaixo")]
 spriteChar = NodePath("Sprite")

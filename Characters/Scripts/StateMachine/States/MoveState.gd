@@ -1,12 +1,10 @@
 class_name MoveState
 extends State
 
-
-
 func physics_update(delta):
 	current_character.apply_gravity(delta)
 	current_character.movement(delta)
-	current_character.play_anim(current_character.move_anim)
+	current_character.play_anim(current_character.data.move_anim)
 	
 	
 	if Input.is_action_pressed("punch") and  Input.is_action_pressed("jump") :
