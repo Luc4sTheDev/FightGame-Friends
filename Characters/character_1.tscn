@@ -49,6 +49,24 @@
 [ext_resource type="Texture2D" uid="uid://c11d6slb1fydm" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle3.png" id="34_d6ncs"]
 [ext_resource type="Texture2D" uid="uid://bflbptc8anq8g" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle4.png" id="35_53far"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67g0p"]
+size = Vector2(22.25, 12.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4opgv"]
+size = Vector2(22, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je1ap"]
+size = Vector2(22.125, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8ngr"]
+size = Vector2(20, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpexv"]
+size = Vector2(20, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0sg"]
+size = Vector2(20, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wx6mx"]
 animations = [{
 "frames": [{
@@ -222,24 +240,6 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_67g0p"]
-size = Vector2(22.25, 12.75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4opgv"]
-size = Vector2(22, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_je1ap"]
-size = Vector2(22.125, 19.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8ngr"]
-size = Vector2(20, 14)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpexv"]
-size = Vector2(20, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0sg"]
-size = Vector2(20, 16)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kcl4p"]
 radius = 11.0
 height = 50.0
@@ -248,8 +248,8 @@ height = 50.0
 collision_layer = 8
 script = ExtResource("1_4opgv")
 hurtBoxes = [NodePath("HurtBoxCima"), NodePath("HurtBoxMedio"), NodePath("HurtboxBaixo")]
-hitboxes = [NodePath("HitBoxCima"), NodePath("HitBoxMedio"), NodePath("HitBoxBaixo")]
-spriteChar = NodePath("Sprite")
+hitboxes = [NodePath("Pivot/HitBoxCima"), NodePath("Pivot/HitBoxMedio"), NodePath("Pivot/HitBoxBaixo")]
+spriteChar = NodePath("Pivot/Sprite")
 
 [node name="StateMachine" type="Node" parent="." unique_id=2084564265 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_kcl4p")
@@ -276,13 +276,6 @@ script = ExtResource("8_0hsx4")
 [node name="SpecialState" type="Node" parent="StateMachine" unique_id=1799917568]
 script = ExtResource("9_8g0id")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1072040460]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_wx6mx")
-animation = &"dive_kick"
-frame = 4
-frame_progress = 1.0
-
 [node name="HurtBoxCima" type="Area2D" parent="." unique_id=373819952]
 collision_layer = 4
 collision_mask = 0
@@ -307,35 +300,44 @@ collision_mask = 0
 position = Vector2(-4.9375, 23)
 shape = SubResource("RectangleShape2D_je1ap")
 
-[node name="HitBoxCima" type="Area2D" parent="." unique_id=130263461]
+[node name="Pivot" type="Node2D" parent="." unique_id=103825359]
+
+[node name="HitBoxCima" type="Area2D" parent="Pivot" unique_id=130263461]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxCima" unique_id=1290816376]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitBoxCima" unique_id=1290816376]
 position = Vector2(22, -9)
 shape = SubResource("RectangleShape2D_s8ngr")
 disabled = true
 debug_color = Color(0.9721406, 0.14159712, 0.23650989, 0.41960785)
 
-[node name="HitBoxMedio" type="Area2D" parent="." unique_id=474198267]
+[node name="HitBoxMedio" type="Area2D" parent="Pivot" unique_id=474198267]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxMedio" unique_id=1351455815]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitBoxMedio" unique_id=1351455815]
 position = Vector2(22, 6.5)
 shape = SubResource("RectangleShape2D_xpexv")
 disabled = true
 debug_color = Color(0.7750733, 0, 0.20574015, 0.41960785)
 
-[node name="HitBoxBaixo" type="Area2D" parent="." unique_id=1626009249]
+[node name="HitBoxBaixo" type="Area2D" parent="Pivot" unique_id=1626009249]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxBaixo" unique_id=781043108]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitBoxBaixo" unique_id=781043108]
 position = Vector2(22, 23)
 shape = SubResource("RectangleShape2D_mk0sg")
 disabled = true
 debug_color = Color(0.99917775, 0, 0.13451469, 0.41960785)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Pivot" unique_id=1072040460]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wx6mx")
+animation = &"dive_kick"
+frame = 4
+frame_progress = 1.0
 
 [node name="Colisao" type="CollisionShape2D" parent="." unique_id=4461323]
 position = Vector2(-4, 9)

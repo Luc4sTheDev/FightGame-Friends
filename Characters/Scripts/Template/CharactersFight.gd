@@ -4,6 +4,7 @@ class_name Fighterz
 @export var data: FighterData
 var player_id: int = 1
 var target: Fighterz
+@onready var pivot: Node2D = $Pivot
 
 @export var hurtBoxes: Array[Area2D]
 @export var hitboxes: Array[Area2D]
@@ -253,11 +254,13 @@ func handle_special():
 		
 		await delay(0.5)
 		can_awaken = true
+
 func face_on():
 	if global_position.x < target.global_position.x:
-		spriteChar.flip_h = false
+		pivot.scale.x = 1
 	else:
-		spriteChar.flip_h = true
+		pivot.scale.x = -1
+
 func powerUp():
 	pass
 

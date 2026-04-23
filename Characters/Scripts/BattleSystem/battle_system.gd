@@ -45,7 +45,7 @@ func spawnPlayer2():
 	player_2.global_position = spawn_p2.global_position
 	
 	player_2.setup_fighter(p2_data, 2) 
-	player_2.spriteChar.flip_h = true 
+	player_2.pivot.scale.x = -1
 	initializePlayer(player_2)
 
 func battleCondition():

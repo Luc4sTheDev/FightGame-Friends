@@ -574,33 +574,49 @@ script = ExtResource("4_vnny2")
 
 [node name="Label" type="Label" parent="UI/HealthBar" unique_id=1351884738]
 layout_mode = 0
-offset_left = 27.0
+offset_left = 97.0
 offset_top = 10.0
-offset_right = 278.87506
+offset_right = 348.87506
 offset_bottom = 33.0
 scale = Vector2(1.5999997, 1.5999997)
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/HealthBar" unique_id=941573771]
 layout_mode = 0
-offset_left = 25.0
+offset_left = 95.0
 offset_top = 60.0
-offset_right = 432.0
+offset_right = 502.0
+offset_bottom = 94.0
+
+[node name="Iconp1" type="TextureRect" parent="UI/HealthBar" unique_id=1010930961]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 7.369858
+offset_right = 87.0
+offset_bottom = 90.65753
+expand_mode = 1
+
+[node name="ProgressBar2" type="ProgressBar" parent="UI/HealthBar" unique_id=558362277]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 60.0
+offset_right = 1033.0
 offset_bottom = 94.0
 
 [node name="Label2" type="Label" parent="UI/HealthBar" unique_id=1880789583]
 layout_mode = 0
-offset_left = 696.0
+offset_left = 630.0
 offset_top = 10.0
-offset_right = 949.125
+offset_right = 883.125
 offset_bottom = 33.0
 scale = Vector2(1.5999997, 1.5999997)
 
-[node name="ProgressBar2" type="ProgressBar" parent="UI/HealthBar" unique_id=558362277]
+[node name="Iconp2" type="TextureRect" parent="UI/HealthBar" unique_id=998993668]
 layout_mode = 0
-offset_left = 692.0
-offset_top = 60.0
-offset_right = 1099.0
-offset_bottom = 94.0
+offset_left = 1047.0
+offset_top = 15.0411
+offset_right = 1119.0
+offset_bottom = 93.945206
+expand_mode = 1
 
 [node name="BattleSystem" type="Node2D" parent="." unique_id=43324762 node_paths=PackedStringArray("spawn_p1", "spawn_p2", "hud_health_bar")]
 script = ExtResource("3_lkege")
