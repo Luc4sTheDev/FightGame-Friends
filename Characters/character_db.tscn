@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dkssvf3uposai"]
+
+[ext_resource type="Script" uid="uid://bk5m08m1c3x6d" path="res://Characters/Scripts/DataBase/CharacterDB.gd" id="1_sr3rd"]
+[ext_resource type="Script" uid="uid://my475ibh75ew" path="res://Characters/Scripts/DataBase/Data_Char.gd" id="2_lg1h7"]
+[ext_resource type="Resource" uid="uid://dwxehj6dab616" path="res://Characters/Teste/CarlitaTeste.tres" id="3_1qdwb"]
+
+[node name="CharacterDB" type="Node" unique_id=12252085]
+script = ExtResource("1_sr3rd")
+character_data = Array[ExtResource("2_lg1h7")]([ExtResource("3_1qdwb"), ExtResource("3_1qdwb")])

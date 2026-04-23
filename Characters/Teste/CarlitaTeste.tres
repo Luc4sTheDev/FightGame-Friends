@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" uid="uid://my475ibh75ew" path="res://Characters/Scripts/DataBase/Data_Char.gd" id="1_aefy7"]
 [ext_resource type="Texture2D" uid="uid://bd8v26m24yhdt" path="res://icon.svg" id="1_sd6p7"]
-
-[sub_resource type="PackedScene" id="PackedScene_sd6p7"]
+[ext_resource type="PackedScene" uid="uid://d1yrdryu8kmdg" path="res://Characters/character_1.tscn" id="1_y2hye"]
 
 [resource]
 script = ExtResource("1_aefy7")
 char_name = "Carlita"
 icon = ExtResource("1_sd6p7")
-character_scene = SubResource("PackedScene_sd6p7")
+character_scene = ExtResource("1_y2hye")
 speed = 200.0
 jump = 600.0
 max_jump = 3

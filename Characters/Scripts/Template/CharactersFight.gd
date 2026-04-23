@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Fighterz
 
 @export var data: FighterData
+var player_id: int = 1
+var target: Fighterz
 
 @export var hurtBoxes: Array[Area2D]
 @export var hitboxes: Array[Area2D]
@@ -15,11 +17,9 @@ var max_jump: int
 var jump_count: int = 0
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-# energia
 var energyBar: float = 0.0
 var energyMax: float = 100.0
 
-# combo
 var comboCount: int = 0
 var comboMaxCount: int
 var dano_atual: float
@@ -37,7 +37,11 @@ var can_kickJump: bool = true
 @onready var state_machine: StateMachine = $StateMachine
 
 func _ready() -> void:
-	state_machine.init(self)
+	pass
+
+func setup_fighter(fighter_data: FighterData, id: int):
+	data = fighter_data
+	player_id = id 
 	
 	speed = data.speed
 	jump = data.jump
@@ -46,8 +50,13 @@ func _ready() -> void:
 	
 	comboMaxCount = data.combo_max
 	dano_atual = data.base_damage
+	state_machine.init(self)
 
 func _physics_process(delta: float) -> void:
+	if not data:
+		return
+		 
+	face_on()
 	state_machine._physics_process(delta)
 	move_and_slide()
 	update_combo_timer(delta)
@@ -60,7 +69,10 @@ func apply_gravity(delta):
 		jump_count = 0
 
 func movement(_delta):
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var btn_left = "p" + str(player_id) + "_left"
+	var btn_right = "p" + str(player_id) + "_right"
+	
+	var direction = Input.get_axis(btn_left, btn_right)
 	
 	if direction != 0:
 		velocity.x = direction * speed
@@ -68,7 +80,9 @@ func movement(_delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 func handle_jump():
-	if Input.is_action_just_pressed("jump") and jump_count < max_jump:
+	var btn_jump = "p" + str(player_id) + "_jump"
+	
+	if Input.is_action_just_pressed(btn_jump) and jump_count < max_jump:
 		velocity.y = -jump
 		jump_count += 1
 
@@ -140,7 +154,7 @@ func execute_attack(stage: int):
 
 func hitBoxActivate(hitbox: Area2D, delay: float, active_time: float):
 	var shapes = hitbox.get_child(0)
-	
+
 	await get_tree().create_timer(delay).timeout
 	shapes.disabled = false
 	
@@ -177,12 +191,15 @@ func jumpKick():
 		can_kickJump = true
 
 func diveKick():
-	var input = Input.get_axis("ui_left", "ui_right")
+	var btn_left = "p" + str(player_id) + "_left"
+	var btn_right = "p" + str(player_id) + "_right"
+	var input = Input.get_axis(btn_left, btn_right)
 	
 	if can_kickJump:
 		can_kickJump = false
 		
 		var dir = sign(input)
+		if dir == 0: dir = 1 
 		
 		await delay(0.3)
 		
@@ -206,13 +223,17 @@ func play_anim(anim_name: String):
 func handle_power():
 	if not can_power:
 		return
+		
+	var btn_power = "p" + str(player_id) + "_power"
+	var btn_up = "p" + str(player_id) + "_up"
+	var btn_down = "p" + str(player_id) + "_down"
 	
-	if Input.is_action_just_pressed("power"):
+	if Input.is_action_just_pressed(btn_power):
 		can_power = false
 		
-		if Input.is_action_pressed("ui_up"):
+		if Input.is_action_pressed(btn_up):
 			powerUp()
-		elif Input.is_action_pressed("ui_down"):
+		elif Input.is_action_pressed(btn_down):
 			powerDown()
 		else:
 			powerNeutral()
@@ -224,12 +245,19 @@ func handle_special():
 	if can_awaken:
 		can_awaken = false
 		
-		if Input.is_action_pressed("punch") and Input.is_action_pressed("jump"):
-			print("Especial ativado")
+		var btn_punch = "p" + str(player_id) + "_punch"
+		var btn_jump = "p" + str(player_id) + "_jump"
+		
+		if Input.is_action_pressed(btn_punch) and Input.is_action_pressed(btn_jump):
+			print("Especial ativado para o Player ", player_id)
 		
 		await delay(0.5)
 		can_awaken = true
-
+func face_on():
+	if global_position.x < target.global_position.x:
+		spriteChar.flip_h = false
+	else:
+		spriteChar.flip_h = true
 func powerUp():
 	pass
 

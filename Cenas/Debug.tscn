@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ctmhj42orlm3k"]
 
 [ext_resource type="Texture2D" uid="uid://bbd76s1xb6fal" path="res://Assets/Streets of Fight files/Assets/Stage Layers/tileset.png" id="1_5jonb"]
-[ext_resource type="PackedScene" uid="uid://d1yrdryu8kmdg" path="res://Characters/character_1.tscn" id="2_ixdl1"]
 [ext_resource type="Script" uid="uid://cyeo86c0sy20p" path="res://Characters/Scripts/BattleSystem/battle_system.gd" id="3_lkege"]
+[ext_resource type="Script" uid="uid://baswgljrcrph3" path="res://Characters/Scripts/UI/health_bar.gd" id="4_vnny2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixdl1"]
 texture = ExtResource("1_5jonb")
@@ -563,14 +563,53 @@ layer_1/tile_data = PackedInt32Array(-196605, 1179648, 5, -131069, 0, 1, -65533,
 layer_2/name = "Backdrop"
 layer_2/z_index = -2
 
-[node name="Carlita" parent="." unique_id=1845756115 node_paths=PackedStringArray("spriteChar") instance=ExtResource("2_ixdl1")]
-spriteChar = NodePath(".")
+[node name="UI" type="CanvasLayer" parent="." unique_id=1143875357]
 
-[node name="BattleSystem" type="Node2D" parent="." unique_id=43324762]
+[node name="HealthBar" type="Control" parent="UI" unique_id=373634216]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1127.0
+offset_bottom = 117.0
+script = ExtResource("4_vnny2")
+
+[node name="Label" type="Label" parent="UI/HealthBar" unique_id=1351884738]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 10.0
+offset_right = 278.87506
+offset_bottom = 33.0
+scale = Vector2(1.5999997, 1.5999997)
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/HealthBar" unique_id=941573771]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 60.0
+offset_right = 432.0
+offset_bottom = 94.0
+
+[node name="Label2" type="Label" parent="UI/HealthBar" unique_id=1880789583]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 10.0
+offset_right = 949.125
+offset_bottom = 33.0
+scale = Vector2(1.5999997, 1.5999997)
+
+[node name="ProgressBar2" type="ProgressBar" parent="UI/HealthBar" unique_id=558362277]
+layout_mode = 0
+offset_left = 692.0
+offset_top = 60.0
+offset_right = 1099.0
+offset_bottom = 94.0
+
+[node name="BattleSystem" type="Node2D" parent="." unique_id=43324762 node_paths=PackedStringArray("spawn_p1", "spawn_p2", "hud_health_bar")]
 script = ExtResource("3_lkege")
+spawn_p1 = NodePath("Player1")
+spawn_p2 = NodePath("Player2")
+hud_health_bar = NodePath("../UI/HealthBar")
 
 [node name="Player1" type="Node2D" parent="BattleSystem" unique_id=1319782173]
-position = Vector2(-167, 0)
+position = Vector2(-119, 0)
 
 [node name="Player2" type="Node2D" parent="BattleSystem" unique_id=1471903168]
-position = Vector2(166, 0)
+position = Vector2(130, 0)

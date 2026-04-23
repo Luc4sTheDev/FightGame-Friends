@@ -2,7 +2,11 @@ class_name AirState
 extends State
 
 func enter():
-	if Input.get_axis("ui_left", "ui_right") != 0:
+	var p_id = str(current_character.player_id)
+	var btn_left = "p" + p_id + "_left"
+	var btn_right = "p" + p_id + "_right"
+	
+	if Input.get_axis(btn_left, btn_right) != 0:
 		current_character.diveKick()
 		current_character.play_anim(current_character.data.divekick_anim)
 	else:

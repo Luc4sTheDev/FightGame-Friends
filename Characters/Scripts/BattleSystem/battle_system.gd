@@ -1,34 +1,51 @@
 class_name BattleSystem
 extends Node2D
 
-@export var player_scene: PackedScene
+var player_1: Fighterz
+var player_2: Fighterz
 
-@export var player_1:Fighterz
-@export var player_2:Fighterz
+var contadorVitoriasMax: int = 2
+var player1_victory: int = 0
+var player2_victory: int = 0
 
-var contadorVitoriasMax:int = 2
+@export var spawn_p1: Node2D
+@export var spawn_p2: Node2D
+@export var hud_health_bar: HealthBar 
 
-var player1_victory:int = 0
-var player2_victory:int = 0
 
-@export var spawn_p1:Node2D
-@export var spawn_p2:Node2D
+func _ready():
+	spawnPlayer1()
+	spawnPlayer2()
+	
+	player_1.target = player_2
+	player_2.target = player_1
+	
+	hud_health_bar.setup_hud(player_1.data, player_2.data)
 
-func initializePlayer(player:Fighterz):
+func initializePlayer(player: Fighterz):
 	player.energyBar = 0.0
-	player.health = 100
+	player.health = player.data.max_health 
 	player.jump_count = 0
 	
 func spawnPlayer1():
-	player_1 = player_scene.instantiate()
-	add_child(player_1)
+	var p1_data = CharacterDb.get_character(CharacterDb.p1_selected_id)
+	player_1 = p1_data.character_scene.instantiate() as Fighterz
+	
+	add_child(player_1) 
 	player_1.global_position = spawn_p1.global_position
+	
+	player_1.setup_fighter(p1_data, 1) 
 	initializePlayer(player_1)
-
+	
 func spawnPlayer2():
-	player_2 = player_scene.instantiate()
-	add_child(player_2)
+	var p2_data = CharacterDb.get_character(CharacterDb.p2_selected_id)
+	player_2 = p2_data.character_scene.instantiate() as Fighterz
+	
+	add_child(player_2) 
 	player_2.global_position = spawn_p2.global_position
+	
+	player_2.setup_fighter(p2_data, 2) 
+	player_2.spriteChar.flip_h = true 
 	initializePlayer(player_2)
 
 func battleCondition():
@@ -41,9 +58,9 @@ func battleCondition():
 
 func endRound():
 	if player1_victory >= contadorVitoriasMax:
-		print("player 1 ganhou")
+		print("Player 1 ganhou a partida!")
 	elif player2_victory >= contadorVitoriasMax:
-		print("player 2 ganhou")
+		print("Player 2 ganhou a partida!")
 	else:
 		resetMatch()
 
@@ -53,3 +70,4 @@ func resetMatch():
 
 	spawnPlayer1()
 	spawnPlayer2()
+	hud_health_bar.setup_hud(player_1.data, player_2.data)

@@ -9,10 +9,14 @@ func physics_update(delta):
 	current_character.apply_gravity(delta)
 	current_character.movement(delta)
 	
-	if Input.is_action_just_pressed("jump"):
+	var p_id = str(current_character.player_id)
+	var btn_jump = "p" + p_id + "_jump"
+	var btn_punch = "p" + p_id + "_punch"
+	
+	if Input.is_action_just_pressed(btn_jump):
 		current_character.handle_jump()
 	
-	if Input.is_action_just_pressed("punch"):
+	if Input.is_action_just_pressed(btn_punch):
 		state_machine.change_state(state_machine.get_node("AirState"))
 		
 	if current_character.is_on_floor() and current_character.velocity.y >= 0:
