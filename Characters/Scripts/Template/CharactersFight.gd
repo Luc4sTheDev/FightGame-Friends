@@ -271,7 +271,7 @@ func clamp_to_camera():
 	
 	var cam_x = cam.get_screen_center_position().x
 	
-	var margin = 40.0 
+	var margin = 10.0 
 	
 	var left_limit = cam_x - (screen_width / 2) + margin
 	var right_limit = cam_x + (screen_width / 2) - margin
