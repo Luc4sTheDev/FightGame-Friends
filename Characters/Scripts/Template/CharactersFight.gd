@@ -61,6 +61,7 @@ func _physics_process(delta: float) -> void:
 	state_machine._physics_process(delta)
 	move_and_slide()
 	update_combo_timer(delta)
+	clamp_to_camera()
 
 func apply_gravity(delta):
 	if not is_on_floor():
@@ -260,6 +261,22 @@ func face_on():
 		pivot.scale.x = 1
 	else:
 		pivot.scale.x = -1
+
+func clamp_to_camera():
+	var cam = get_viewport().get_camera_2d()
+	if not cam: 
+		return 
+	
+	var screen_width = get_viewport_rect().size.x / cam.zoom.x
+	
+	var cam_x = cam.get_screen_center_position().x
+	
+	var margin = 40.0 
+	
+	var left_limit = cam_x - (screen_width / 2) + margin
+	var right_limit = cam_x + (screen_width / 2) - margin
+	
+	global_position.x = clamp(global_position.x, left_limit, right_limit)
 
 func powerUp():
 	pass

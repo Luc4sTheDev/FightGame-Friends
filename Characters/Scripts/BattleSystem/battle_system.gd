@@ -11,7 +11,7 @@ var player2_victory: int = 0
 @export var spawn_p1: Node2D
 @export var spawn_p2: Node2D
 @export var hud_health_bar: HealthBar 
-
+@export var arena_camera: Camera2D
 
 func _ready():
 	spawnPlayer1()
@@ -34,8 +34,11 @@ func spawnPlayer1():
 	add_child(player_1) 
 	player_1.global_position = spawn_p1.global_position
 	
-	player_1.setup_fighter(p1_data, 1) 
+	player_1.setup_fighter(p1_data, 1)
 	initializePlayer(player_1)
+	
+	if arena_camera:
+		arena_camera.add_target(player_1)
 	
 func spawnPlayer2():
 	var p2_data = CharacterDb.get_character(CharacterDb.p2_selected_id)
@@ -44,9 +47,11 @@ func spawnPlayer2():
 	add_child(player_2) 
 	player_2.global_position = spawn_p2.global_position
 	
-	player_2.setup_fighter(p2_data, 2) 
-	player_2.pivot.scale.x = -1
+	player_2.setup_fighter(p2_data, 2)
 	initializePlayer(player_2)
+	
+	if arena_camera:
+		arena_camera.add_target(player_2)
 
 func battleCondition():
 	if player_1.health <= 0:
