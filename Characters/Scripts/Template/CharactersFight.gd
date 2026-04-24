@@ -1,5 +1,6 @@
 extends CharacterBody2D
 class_name Fighterz
+signal health_changed(id: int, new_health: float)
 
 @export var data: FighterData
 var player_id: int = 1
@@ -90,10 +91,12 @@ func handle_jump():
 
 func takeDamage(amount: float, isCrit: bool = false):
 	var finalDamage = amount
-	
+	print("tomou dano " , dano_atual)
 	if isCrit:
 		finalDamage *= 2.0
-	
+		print("Tomou critico")
+
+	health_changed.emit(player_id, health)
 	health -= finalDamage
 	if health <= 0:
 		die()
@@ -208,8 +211,8 @@ func diveKick():
 		velocity.x = dir * speed * 2.5
 		velocity.y = 500
 		
-		var lowHitbox = hitboxes[2]
-		hitBoxActivate(lowHitbox, 0.0, 0.2)
+		var lowHitbox = hitboxes[3]
+		hitBoxActivate(lowHitbox, 0.0, 0.1)
 		
 		can_attack = false
 		

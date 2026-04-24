@@ -16,6 +16,7 @@ var max_health:float = 100.0
 @export var highpunch_anim: String = "highpunch"
 @export var mediumpunch_anim: String = "mediumpunch"
 @export var lowkick_anim: String = "lowkick"
+@export var hurt: String = "hurt"
 
 # stats
 @export var speed: float = 100.0
@@ -24,4 +25,4 @@ var max_health:float = 100.0
 
 # combate
 @export var combo_max: int = 3
-@export var base_damage: float = 10.0
+@export var base_damage: float = 1.0

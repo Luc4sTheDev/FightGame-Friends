@@ -597,6 +597,8 @@ offset_left = 95.0
 offset_top = 60.0
 offset_right = 502.0
 offset_bottom = 94.0
+step = 0.5
+fill_mode = 1
 
 [node name="Iconp1" type="TextureRect" parent="UI/HealthBar" unique_id=1010930961]
 layout_mode = 0
@@ -612,6 +614,7 @@ offset_left = 626.0
 offset_top = 60.0
 offset_right = 1033.0
 offset_bottom = 94.0
+step = 0.5
 
 [node name="Label2" type="Label" parent="UI/HealthBar" unique_id=1880789583]
 layout_mode = 0

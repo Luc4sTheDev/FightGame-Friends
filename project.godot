@@ -128,6 +128,11 @@ p2_punch={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="Hitbox"
+2d_physics/layer_3="Hurtbox"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

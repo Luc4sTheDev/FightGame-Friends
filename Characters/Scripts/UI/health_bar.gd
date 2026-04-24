@@ -22,3 +22,10 @@ func setup_hud(p1_data: FighterData, p2_data: FighterData) -> void:
 	
 	player1Health.value = p1_data.max_health
 	player2Health.value = p2_data.max_health
+
+
+func update_health(id: int, new_health: float):
+	if id == 1:
+		player1Health.value = new_health
+	elif id == 2:
+		player2Health.value = new_health

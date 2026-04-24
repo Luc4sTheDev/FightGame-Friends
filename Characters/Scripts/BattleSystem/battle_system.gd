@@ -39,6 +39,8 @@ func spawnPlayer1():
 	
 	if arena_camera:
 		arena_camera.add_target(player_1)
+		
+	player_1.health_changed.connect(hud_health_bar.update_health)
 	
 func spawnPlayer2():
 	var p2_data = CharacterDb.get_character(CharacterDb.p2_selected_id)
@@ -52,7 +54,7 @@ func spawnPlayer2():
 	
 	if arena_camera:
 		arena_camera.add_target(player_2)
-
+	player_2.health_changed.connect(hud_health_bar.update_health)
 func battleCondition():
 	if player_1.health <= 0:
 		player2_victory += 1 

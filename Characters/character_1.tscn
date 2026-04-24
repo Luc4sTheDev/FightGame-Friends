@@ -50,7 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://bflbptc8anq8g" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle4.png" id="35_53far"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67g0p"]
-size = Vector2(22.25, 12.75)
+size = Vector2(23.125, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4opgv"]
 size = Vector2(22, 15)
@@ -246,9 +246,10 @@ height = 50.0
 
 [node name="Carlita" type="CharacterBody2D" unique_id=1845756115 node_paths=PackedStringArray("hurtBoxes", "hitboxes", "spriteChar")]
 collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_4opgv")
 hurtBoxes = [NodePath("HurtBoxCima"), NodePath("HurtBoxMedio"), NodePath("HurtboxBaixo")]
-hitboxes = [NodePath("Pivot/HitBoxCima"), NodePath("Pivot/HitBoxMedio"), NodePath("Pivot/HitBoxBaixo")]
+hitboxes = [NodePath("Pivot/HitBoxCima"), NodePath("Pivot/HitBoxMedio"), NodePath("Pivot/HitBoxMedio"), NodePath("Pivot/HitBoxBaixo")]
 spriteChar = NodePath("Pivot/Sprite")
 
 [node name="StateMachine" type="Node" parent="." unique_id=2084564265 node_paths=PackedStringArray("initial_state")]
@@ -278,15 +279,15 @@ script = ExtResource("9_8g0id")
 
 [node name="HurtBoxCima" type="Area2D" parent="." unique_id=373819952]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxCima" unique_id=997053168]
-position = Vector2(-5, -9.375)
+position = Vector2(-4.5625, -10.5)
 shape = SubResource("RectangleShape2D_67g0p")
 
 [node name="HurtBoxMedio" type="Area2D" parent="." unique_id=423038899]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxMedio" unique_id=1652910171]
 position = Vector2(-4.875, 5)
@@ -294,7 +295,7 @@ shape = SubResource("RectangleShape2D_4opgv")
 
 [node name="HurtboxBaixo" type="Area2D" parent="." unique_id=164460558]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxBaixo" unique_id=1422895644]
 position = Vector2(-4.9375, 23)
