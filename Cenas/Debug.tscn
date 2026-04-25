@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bbd76s1xb6fal" path="res://Assets/Streets of Fight files/Assets/Stage Layers/tileset.png" id="1_5jonb"]
 [ext_resource type="Script" uid="uid://clsvqsfecqpgm" path="res://Characters/Scripts/Camera/FightCamera.gd" id="1_vnny2"]
 [ext_resource type="Script" uid="uid://cyeo86c0sy20p" path="res://Characters/Scripts/BattleSystem/battle_system.gd" id="3_lkege"]
+[ext_resource type="Script" uid="uid://u0nu7xyboj6j" path="res://Characters/Scripts/UI/victory_count.gd" id="4_g4eqi"]
+[ext_resource type="Texture2D" uid="uid://dqptyvc3y75fe" path="res://Assets/PlaceHolder/Victory.png" id="4_pyyvv"]
 [ext_resource type="Script" uid="uid://baswgljrcrph3" path="res://Characters/Scripts/UI/health_bar.gd" id="4_vnny2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixdl1"]
@@ -597,7 +599,7 @@ offset_left = 95.0
 offset_top = 60.0
 offset_right = 502.0
 offset_bottom = 94.0
-step = 0.5
+step = 1.0
 fill_mode = 1
 
 [node name="Iconp1" type="TextureRect" parent="UI/HealthBar" unique_id=1010930961]
@@ -614,7 +616,8 @@ offset_left = 626.0
 offset_top = 60.0
 offset_right = 1033.0
 offset_bottom = 94.0
-step = 0.5
+step = 1.0
+fill_mode = 1
 
 [node name="Label2" type="Label" parent="UI/HealthBar" unique_id=1880789583]
 layout_mode = 0
@@ -623,6 +626,7 @@ offset_top = 10.0
 offset_right = 883.125
 offset_bottom = 33.0
 scale = Vector2(1.5999997, 1.5999997)
+horizontal_alignment = 2
 
 [node name="Iconp2" type="TextureRect" parent="UI/HealthBar" unique_id=998993668]
 layout_mode = 0
@@ -632,8 +636,60 @@ offset_right = 1119.0
 offset_bottom = 93.945206
 expand_mode = 1
 
-[node name="BattleSystem" type="Node2D" parent="." unique_id=43324762 node_paths=PackedStringArray("spawn_p1", "spawn_p2", "hud_health_bar", "arena_camera")]
+[node name="VictoryCount" type="Control" parent="UI" unique_id=1451418939]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 102.0
+offset_top = 104.0
+offset_right = 1032.0
+offset_bottom = 144.0
+script = ExtResource("4_g4eqi")
+
+[node name="Vitoriap1" type="HBoxContainer" parent="UI/VictoryCount" unique_id=1626004613]
+layout_mode = 0
+offset_right = 398.0
+offset_bottom = 40.0
+
+[node name="p1victory1" type="Sprite2D" parent="UI/VictoryCount/Vitoriap1" unique_id=1726820232]
+visible = false
+position = Vector2(70, 23)
+scale = Vector2(0.052806146, 0.052806146)
+texture = ExtResource("4_pyyvv")
+
+[node name="p1victory2" type="Sprite2D" parent="UI/VictoryCount/Vitoriap1" unique_id=622784298]
+visible = false
+position = Vector2(126, 23)
+scale = Vector2(0.053, 0.053)
+texture = ExtResource("4_pyyvv")
+
+[node name="Vitoriap2" type="HBoxContainer" parent="UI/VictoryCount" unique_id=367265005]
+layout_mode = 0
+offset_right = 398.0
+offset_bottom = 40.0
+
+[node name="p2victory1" type="Sprite2D" parent="UI/VictoryCount/Vitoriap2" unique_id=1089579765]
+visible = false
+position = Vector2(812.87506, 23)
+scale = Vector2(0.052806146, 0.052806146)
+texture = ExtResource("4_pyyvv")
+
+[node name="p2victory2" type="Sprite2D" parent="UI/VictoryCount/Vitoriap2" unique_id=1772848849]
+visible = false
+position = Vector2(868.87494, 23)
+scale = Vector2(0.053, 0.053)
+texture = ExtResource("4_pyyvv")
+
+[node name="TextoIndicador" type="Label" parent="UI" unique_id=1790338304]
+offset_left = 403.0
+offset_top = 295.0
+offset_right = 530.0
+offset_bottom = 318.0
+scale = Vector2(2.3600001, 2.3600001)
+horizontal_alignment = 1
+
+[node name="BattleSystem" type="Node2D" parent="." unique_id=43324762 node_paths=PackedStringArray("victory_bar", "spawn_p1", "spawn_p2", "hud_health_bar", "arena_camera")]
 script = ExtResource("3_lkege")
+victory_bar = NodePath("../UI/VictoryCount")
 spawn_p1 = NodePath("Player1")
 spawn_p2 = NodePath("Player2")
 hud_health_bar = NodePath("../UI/HealthBar")

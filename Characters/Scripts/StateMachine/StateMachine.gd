@@ -4,7 +4,7 @@ extends Node
 @export var initial_state:State
 var current_state:State
 
-func init(character: Fighterz):
+func init(character: CharacterBody2D):
 	for child in get_children():
 		if child is State:
 			child.current_character = character

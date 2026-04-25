@@ -16,6 +16,10 @@ var speed: float
 var jump: float
 var max_jump: int
 
+var knockback_direction := Vector2.ZERO
+var knockback_stregth := 0.0
+@export var knockback_friction := 800.0
+
 var jump_count: int = 0
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -30,6 +34,7 @@ var e_critico_agora: bool = false
 var can_attack: bool = true
 var can_power: bool = true
 var can_awaken: bool = true
+var gettingHurt:bool = false
 
 var combo_timer: float = 0.0
 var combo_reset_time: float = 1.0
@@ -91,13 +96,15 @@ func handle_jump():
 
 func takeDamage(amount: float, isCrit: bool = false):
 	var finalDamage = amount
+	gettingHurt = true
 	print("tomou dano " , dano_atual)
 	if isCrit:
 		finalDamage *= 2.0
 		print("Tomou critico")
-
-	health_changed.emit(player_id, health)
 	health -= finalDamage
+	health_changed.emit(player_id, health)
+	await delay(0.3)
+	gettingHurt = false
 	if health <= 0:
 		die()
 
@@ -110,7 +117,7 @@ func energyGain(amount: float):
 		energyBar = energyMax
 
 func criticalDamage(danoBase: float) -> float:
-	var chanceAcerto = 0.2
+	var chanceAcerto = 0.04
 	var mult = 2.0
 	
 	if randf() <= chanceAcerto:
@@ -140,22 +147,19 @@ func fightCombo():
 	if comboCount >= comboMaxCount:
 		resetCombo()
 
+func knockback(attacker_global_position: Vector2, hit_stregth: float):
+	knockback_direction = (global_position - attacker_global_position).normalized()
+	knockback_stregth = hit_stregth
+	
+	var cam = get_viewport().get_camera_2d()
+	
+	if cam and cam.has_method("tremer"):
+		if hit_stregth > 0:
+			var intensidade_calculada = hit_stregth / 20.0
+			cam.tremer(intensidade_calculada)
+
 func execute_attack(stage: int):
-	if stage >= hitboxes.size():
-		return
-	
-	var hitbox_atual = hitboxes[stage]
-	
-	match stage:
-		0:
-			hitBoxActivate(hitbox_atual, 0.1, 0.2)
-			play_anim(data.highpunch_anim)
-		1:
-			hitBoxActivate(hitbox_atual, 0.1, 0.2)
-			play_anim(data.mediumpunch_anim)
-		2:
-			hitBoxActivate(hitbox_atual, 0.1, 0.2)
-			play_anim(data.lowkick_anim)
+	pass
 
 func hitBoxActivate(hitbox: Area2D, delay: float, active_time: float):
 	var shapes = hitbox.get_child(0)

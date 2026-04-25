@@ -1,6 +1,23 @@
 extends Fighterz
 class_name BonecoTeste
 
+func execute_attack(stage: int):
+	if stage >= hitboxes.size():
+		return
+	
+	var hitbox_atual = hitboxes[stage]
+	
+	match stage:
+		0:
+			hitBoxActivate(hitbox_atual, 0.1, 0.2)
+			play_anim(data.highpunch_anim)
+		1:
+			hitBoxActivate(hitbox_atual, 0.1, 0.2)
+			play_anim(data.mediumpunch_anim)
+		2:
+			hitBoxActivate(hitbox_atual, 0.3, 0.2)
+			play_anim(data.lowkick_anim)
+
 func powerUp():
 	print("Kakaia")
 func powerDown():
@@ -11,17 +28,28 @@ func powerNeutral():
 func _on_hurt_box_cima_area_entered(area: Area2D) -> void:
 		var atacante = area.owner 
 		if atacante is Fighterz and atacante != self:
-			if "HitBoxCima" in area.name:
+			if "HitBoxForte" in area.name:
 				takeDamage(atacante.dano_atual, atacante.e_critico_agora)
-
+				knockback(atacante.global_position, 400.0)
+				
+			elif "HitBoxCima" in area.name:
+				takeDamage(atacante.dano_atual, atacante.e_critico_agora)
+			
 func _on_hurt_box_medio_area_entered(area: Area2D) -> void:
 	var atacante = area.owner 
 	if atacante is Fighterz and atacante != self:
-		if "HitBoxMedio" in area.name:
+		if "HitBoxForte" in area.name:
+				takeDamage(atacante.dano_atual, atacante.e_critico_agora)
+				knockback(atacante.global_position, 400.0)
+		elif "HitBoxMedio" in area.name:
 			takeDamage(atacante.dano_atual, atacante.e_critico_agora)
 
 func _on_hurtbox_baixo_area_entered(area: Area2D) -> void:
 	var atacante = area.owner 
 	if atacante is Fighterz and atacante != self:
-		if "HitBoxBaixo" in area.name:
+		if "HitBoxForte" in area.name:
+				takeDamage(atacante.dano_atual, atacante.e_critico_agora)
+				knockback(atacante.global_position, 400.0)
+
+		elif "HitBoxBaixo" in area.name:
 			takeDamage(atacante.dano_atual, atacante.e_critico_agora)

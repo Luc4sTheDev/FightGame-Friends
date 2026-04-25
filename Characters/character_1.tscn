@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://duoka7fct7chn" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab1.png" id="8_tx8vn"]
 [ext_resource type="Script" uid="uid://rmqigp2m2o1w" path="res://Characters/Scripts/StateMachine/States/SpecialState.gd" id="9_8g0id"]
 [ext_resource type="Texture2D" uid="uid://dflq2bqy050k3" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab2.png" id="9_8ofct"]
+[ext_resource type="Script" uid="uid://bsbsplqt1lcm" path="res://Characters/Scripts/StateMachine/States/HurtState.gd" id="10_h4kvv"]
 [ext_resource type="Texture2D" uid="uid://xrhl1mmsep28" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab3.png" id="10_yqeom"]
 [ext_resource type="Texture2D" uid="uid://daiocso3qcnoi" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick1.png" id="11_7qdqf"]
 [ext_resource type="Texture2D" uid="uid://caeegjx27s21q" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick2.png" id="12_nmaov"]
@@ -120,7 +121,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 1.1
+"speed": 7.1
 }, {
 "frames": [{
 "duration": 1.0,
@@ -249,7 +250,7 @@ collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_4opgv")
 hurtBoxes = [NodePath("HurtBoxCima"), NodePath("HurtBoxMedio"), NodePath("HurtboxBaixo")]
-hitboxes = [NodePath("Pivot/HitBoxCima"), NodePath("Pivot/HitBoxMedio"), NodePath("Pivot/HitBoxMedio"), NodePath("Pivot/HitBoxBaixo")]
+hitboxes = [NodePath("Pivot/HitBoxCima"), NodePath("Pivot/HitBoxMedio"), NodePath("Pivot/HitBoxForte"), NodePath("Pivot/HitBoxBaixo")]
 spriteChar = NodePath("Pivot/Sprite")
 
 [node name="StateMachine" type="Node" parent="." unique_id=2084564265 node_paths=PackedStringArray("initial_state")]
@@ -276,6 +277,9 @@ script = ExtResource("8_0hsx4")
 
 [node name="SpecialState" type="Node" parent="StateMachine" unique_id=1799917568]
 script = ExtResource("9_8g0id")
+
+[node name="HurtState" type="Node" parent="StateMachine" unique_id=1585778078]
+script = ExtResource("10_h4kvv")
 
 [node name="HurtBoxCima" type="Area2D" parent="." unique_id=373819952]
 collision_layer = 4
@@ -323,6 +327,16 @@ shape = SubResource("RectangleShape2D_xpexv")
 disabled = true
 debug_color = Color(0.7750733, 0, 0.20574015, 0.41960785)
 
+[node name="HitBoxForte" type="Area2D" parent="Pivot" unique_id=1382616649]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitBoxForte" unique_id=2063202753]
+position = Vector2(22, 6.5)
+shape = SubResource("RectangleShape2D_xpexv")
+disabled = true
+debug_color = Color(0.7750733, 0, 0.20574015, 0.41960785)
+
 [node name="HitBoxBaixo" type="Area2D" parent="Pivot" unique_id=1626009249]
 collision_layer = 2
 collision_mask = 4
@@ -336,13 +350,14 @@ debug_color = Color(0.99917775, 0, 0.13451469, 0.41960785)
 [node name="Sprite" type="AnimatedSprite2D" parent="Pivot" unique_id=1072040460]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_wx6mx")
-animation = &"dive_kick"
-frame = 4
+animation = &"hurt"
+frame = 1
 frame_progress = 1.0
 
 [node name="Colisao" type="CollisionShape2D" parent="." unique_id=4461323]
 position = Vector2(-4, 9)
 shape = SubResource("CapsuleShape2D_kcl4p")
+one_way_collision_margin = 0.0
 debug_color = Color(0.16056219, 0.6448235, 0, 0.41960785)
 
 [connection signal="area_entered" from="HurtBoxCima" to="." method="_on_hurt_box_cima_area_entered"]

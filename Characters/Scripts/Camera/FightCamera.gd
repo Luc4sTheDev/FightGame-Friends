@@ -6,6 +6,9 @@ extends Camera2D
 @export var max_zoom: float = 1.3
 @export var margin: Vector2 = Vector2(200, 200)
 
+var forca_tremor:float = 0.0
+@export var taxa_reducao:float = 10.0
+
 var targets: Array[Node2D] = []
 
 @onready var screen_size: Vector2 = get_viewport_rect().size
@@ -42,3 +45,15 @@ func _process(delta: float) -> void:
 	target_zoom = clamp(target_zoom, min_zoom, max_zoom)
 	
 	zoom = zoom.lerp(Vector2.ONE * target_zoom, zoom_speed * delta)
+	
+	if forca_tremor > 0:
+		offset = Vector2(randf_range(-2.0, 2.0), randf_range(-2.0, 2.0))
+		forca_tremor = lerp(forca_tremor, 0.0, taxa_reducao * delta)
+		
+		if forca_tremor < 0.5:
+			forca_tremor = 0.0
+	else:
+		offset = Vector2.ZERO
+
+func tremer(intensidade: float):
+	forca_tremor = intensidade

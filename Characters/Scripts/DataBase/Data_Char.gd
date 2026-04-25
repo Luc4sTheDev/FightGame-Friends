@@ -25,4 +25,4 @@ var max_health:float = 100.0
 
 # combate
 @export var combo_max: int = 3
-@export var base_damage: float = 1.0
+@export var base_damage: float = 1.5
