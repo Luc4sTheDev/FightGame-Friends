@@ -28,3 +28,9 @@ func physics_update(delta):
 		
 	elif Input.is_action_just_pressed(btn_power):
 		state_machine.change_state(state_machine.get_node("PowerState"))
+		
+	elif current_character.gettingHurt:
+		state_machine.change_state(state_machine.get_node("HurtState"))
+		
+	elif current_character.isZonzin:
+		state_machine.change_state(state_machine.get_node("AtordoadoState"))

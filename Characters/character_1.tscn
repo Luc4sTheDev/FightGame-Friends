@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bsbsplqt1lcm" path="res://Characters/Scripts/StateMachine/States/HurtState.gd" id="10_h4kvv"]
 [ext_resource type="Texture2D" uid="uid://xrhl1mmsep28" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jab/jab3.png" id="10_yqeom"]
 [ext_resource type="Texture2D" uid="uid://daiocso3qcnoi" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick1.png" id="11_7qdqf"]
+[ext_resource type="Script" uid="uid://dyl3ds65xmgvm" path="res://Characters/Scripts/StateMachine/States/AtordoadoState.gd" id="11_avdrc"]
 [ext_resource type="Texture2D" uid="uid://caeegjx27s21q" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick2.png" id="12_nmaov"]
 [ext_resource type="Texture2D" uid="uid://be85qilcuubn7" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump_kick/jump_kick3.png" id="13_0hsx4"]
 [ext_resource type="Texture2D" uid="uid://cagweymt4alcy" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Jump/jump1.png" id="13_kcl4p"]
@@ -49,6 +50,9 @@
 [ext_resource type="Texture2D" uid="uid://b23v27mqa15rr" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle2.png" id="33_i6t6h"]
 [ext_resource type="Texture2D" uid="uid://c11d6slb1fydm" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle3.png" id="34_d6ncs"]
 [ext_resource type="Texture2D" uid="uid://bflbptc8anq8g" path="res://Assets/Streets of Fight files/Assets/Sprites/Brawler-Girl/Idle/idle4.png" id="35_53far"]
+[ext_resource type="Texture2D" uid="uid://d0v2ae6bltq1m" path="res://Assets/PlaceHolder/Esqueleto/Cranio.png" id="50_fwnvj"]
+[ext_resource type="Texture2D" uid="uid://bnse66tymf6xh" path="res://Assets/PlaceHolder/Esqueleto/costelas.png" id="51_avdrc"]
+[ext_resource type="Texture2D" uid="uid://bhpiivr5ppo66" path="res://Assets/PlaceHolder/Esqueleto/pernas.png" id="52_b1ekb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67g0p"]
 size = Vector2(23.125, 15)
@@ -57,7 +61,7 @@ size = Vector2(23.125, 15)
 size = Vector2(22, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je1ap"]
-size = Vector2(22.125, 19.5)
+size = Vector2(22.125, 17.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8ngr"]
 size = Vector2(20, 14)
@@ -281,6 +285,9 @@ script = ExtResource("9_8g0id")
 [node name="HurtState" type="Node" parent="StateMachine" unique_id=1585778078]
 script = ExtResource("10_h4kvv")
 
+[node name="AtordoadoState" type="Node" parent="StateMachine" unique_id=1363864057]
+script = ExtResource("11_avdrc")
+
 [node name="HurtBoxCima" type="Area2D" parent="." unique_id=373819952]
 collision_layer = 4
 collision_mask = 2
@@ -302,7 +309,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxBaixo" unique_id=1422895644]
-position = Vector2(-4.9375, 23)
+position = Vector2(-4.9375, 23.875)
 shape = SubResource("RectangleShape2D_je1ap")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=103825359]
@@ -353,6 +360,26 @@ sprite_frames = SubResource("SpriteFrames_wx6mx")
 animation = &"hurt"
 frame = 1
 frame_progress = 1.0
+
+[node name="Cranio" type="Sprite2D" parent="Pivot" unique_id=1321459558]
+visible = false
+position = Vector2(-2.3841858e-07, 2)
+rotation = 0.49999857
+scale = Vector2(0.057915088, 0.05791509)
+texture = ExtResource("50_fwnvj")
+
+[node name="RibCage" type="Sprite2D" parent="Pivot" unique_id=1293186420]
+visible = false
+position = Vector2(-5, 9)
+rotation = 0.29480943
+scale = Vector2(0.0456081, 0.045608103)
+texture = ExtResource("51_avdrc")
+
+[node name="Legs" type="Sprite2D" parent="Pivot" unique_id=1595679430]
+visible = false
+position = Vector2(-0.41020077, 19.1875)
+scale = Vector2(0.07779191, 0.057191126)
+texture = ExtResource("52_b1ekb")
 
 [node name="Colisao" type="CollisionShape2D" parent="." unique_id=4461323]
 position = Vector2(-4, 9)

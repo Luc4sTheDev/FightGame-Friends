@@ -57,3 +57,6 @@ func _process(delta: float) -> void:
 
 func tremer(intensidade: float):
 	forca_tremor = intensidade
+
+func crit_cam():
+	pass

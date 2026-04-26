@@ -35,6 +35,7 @@ var can_attack: bool = true
 var can_power: bool = true
 var can_awaken: bool = true
 var gettingHurt:bool = false
+var isZonzin: bool = false
 
 var combo_timer: float = 0.0
 var combo_reset_time: float = 1.0
@@ -94,13 +95,42 @@ func handle_jump():
 		velocity.y = -jump
 		jump_count += 1
 
-func takeDamage(amount: float, isCrit: bool = false):
+func takeDamage(amount: float,isCrit: bool = false, xray: Sprite2D = null):
 	var finalDamage = amount
 	gettingHurt = true
 	print("tomou dano " , dano_atual)
+
 	if isCrit:
 		finalDamage *= 2.0
-		print("Tomou critico")
+		print("Tomou Critico")
+		Engine.time_scale = 0.1
+		spriteChar.self_modulate = Color.BLACK 
+		
+		if xray:
+			xray.visible = true
+			xray.modulate.a = 0.0
+			
+			var tween_in = create_tween().set_ignore_time_scale(true)
+			tween_in.tween_property(xray, "modulate:a", 1.0, 0.15) 
+			
+		var cam = get_viewport().get_camera_2d()
+		
+		if cam and cam.has_method("tremer"):
+			var intensidade_calculada = finalDamage / 5.0
+			cam.tremer(intensidade_calculada)
+		await get_tree().create_timer(0.5, true, false, true).timeout
+
+		Engine.time_scale = 1.0
+		isZonzin = true
+		var tween_out = get_tree().create_tween()
+		tween_out.set_parallel(true) 
+
+		tween_out.tween_property(spriteChar, "self_modulate", Color.WHITE, 0.3)
+
+		if xray:
+			tween_out.tween_property(xray, "modulate:a", 0.0, 0.3)
+			tween_out.chain().tween_callback(func(): xray.visible = false)
+
 	health -= finalDamage
 	health_changed.emit(player_id, health)
 	await delay(0.3)
@@ -117,7 +147,7 @@ func energyGain(amount: float):
 		energyBar = energyMax
 
 func criticalDamage(danoBase: float) -> float:
-	var chanceAcerto = 0.04
+	var chanceAcerto = 1.0
 	var mult = 2.0
 	
 	if randf() <= chanceAcerto:

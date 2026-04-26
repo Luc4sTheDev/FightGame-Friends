@@ -33,3 +33,6 @@ func physics_update(delta):
 		
 	elif current_character.gettingHurt:
 		state_machine.change_state(state_machine.get_node("HurtState"))
+
+	elif current_character.isZonzin:
+		state_machine.change_state(state_machine.get_node("AtordoadoState"))

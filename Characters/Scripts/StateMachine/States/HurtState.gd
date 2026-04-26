@@ -3,7 +3,6 @@ extends State
 
 func enter() -> void:
 	current_character.play_anim(current_character.data.hurt)
-
 func physics_update(_delta: float) -> void:
 	if current_character.knockback_stregth > 0:
 		current_character.velocity = current_character.knockback_direction * current_character.knockback_stregth
