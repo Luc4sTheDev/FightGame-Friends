@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 CharacterDb="*uid://dkssvf3uposai"
+Globals="*uid://bukpnhl5odk2k"
 
 [display]
 

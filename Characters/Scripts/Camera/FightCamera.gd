@@ -6,10 +6,13 @@ extends Camera2D
 @export var max_zoom: float = 1.3
 @export var margin: Vector2 = Vector2(200, 200)
 
-var forca_tremor:float = 0.0
-@export var taxa_reducao:float = 10.0
+var forca_tremor: float = 0.0
+@export var taxa_reducao: float = 10.0
 
 var targets: Array[Node2D] = []
+
+var crit_zoom_active := false
+var normal_zoom := Vector2.ONE
 
 @onready var screen_size: Vector2 = get_viewport_rect().size
 
@@ -26,13 +29,16 @@ func _process(delta: float) -> void:
 		return
 		
 	var p = Vector2.ZERO
+	
 	for target in targets:
 		p += target.global_position
+		
 	p /= targets.size()
 	
 	global_position = global_position.lerp(p, move_speed * delta)
 	
 	var r = Rect2(global_position, Vector2.ZERO)
+	
 	for target in targets:
 		r = r.expand(target.global_position)
 		
@@ -44,10 +50,16 @@ func _process(delta: float) -> void:
 	var target_zoom = min(zoom_x, zoom_y)
 	target_zoom = clamp(target_zoom, min_zoom, max_zoom)
 	
-	zoom = zoom.lerp(Vector2.ONE * target_zoom, zoom_speed * delta)
+	if not crit_zoom_active:
+		normal_zoom = Vector2.ONE * target_zoom
+		zoom = zoom.lerp(normal_zoom, zoom_speed * delta)
 	
 	if forca_tremor > 0:
-		offset = Vector2(randf_range(-2.0, 2.0), randf_range(-2.0, 2.0))
+		offset = Vector2(
+			randf_range(-forca_tremor, forca_tremor),
+			randf_range(-forca_tremor, forca_tremor)
+		)
+		
 		forca_tremor = lerp(forca_tremor, 0.0, taxa_reducao * delta)
 		
 		if forca_tremor < 0.5:
@@ -58,5 +70,29 @@ func _process(delta: float) -> void:
 func tremer(intensidade: float):
 	forca_tremor = intensidade
 
-func crit_cam():
-	pass
+func crit_cam(duracao: float = 0.2):
+	if crit_zoom_active:
+		return
+		
+	crit_zoom_active = true
+	
+	var zoom_original = zoom
+	# Usando um valor maior que 1 para APROXIMAR a câmera
+	var zoom_critico = Vector2(4.0, 4.0) 
+	
+	var tween = create_tween()
+	tween.set_ignore_time_scale(true)
+
+	tween.tween_property(self, "zoom", zoom_critico, 0.15)\
+		.set_trans(Tween.TRANS_EXPO)\
+		.set_ease(Tween.EASE_OUT)
+		
+	tween.tween_interval(0.5)
+
+	tween.tween_property(self, "zoom", zoom_original, duracao)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+
+	tween.finished.connect(func():
+		crit_zoom_active = false
+	)

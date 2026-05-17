@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ddwxe4xssqcc"]
+
+[ext_resource type="Texture2D" uid="uid://plgidly8qcr6" path="res://Assets/PlaceHolder/bolaBranca.png" id="1_235dh"]
+[ext_resource type="Script" uid="uid://xop7gcyygh1n" path="res://Assets/VFX/Scripts/blood_effect.gd" id="2_wusp8"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" unique_id=676227459]
+emitting = false
+amount = 15
+texture = ExtResource("1_235dh")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.9
+spread = 40.0
+gravity = Vector2(0, 1000)
+initial_velocity_min = 100.0
+initial_velocity_max = 936.5
+scale_amount_min = 0.0
+scale_amount_max = 0.1
+color = Color(0.42614654, 5.474873e-07, 0.053151175, 1)
+script = ExtResource("2_wusp8")
+
+[node name="Timer" type="Timer" parent="." unique_id=975737806]
+wait_time = 0.61
+one_shot = true
+autostart = true

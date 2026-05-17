@@ -15,6 +15,7 @@ var health: float
 var speed: float
 var jump: float
 var max_jump: int
+var blood_effect = preload("res://Assets/VFX/Sangue/Blood_Effect.tscn")
 
 var knockback_direction := Vector2.ZERO
 var knockback_stregth := 0.0
@@ -45,7 +46,7 @@ var can_kickJump: bool = true
 @onready var state_machine: StateMachine = $StateMachine
 
 func _ready() -> void:
-	pass
+		Globals.player = self
 
 func setup_fighter(fighter_data: FighterData, id: int):
 	data = fighter_data
@@ -95,46 +96,60 @@ func handle_jump():
 		velocity.y = -jump
 		jump_count += 1
 
-func takeDamage(amount: float,isCrit: bool = false, xray: Sprite2D = null):
+func takeDamage(amount: float, attacker_pos: Vector2, isCrit: bool = false, xray: Sprite2D = null):
 	var finalDamage = amount
 	gettingHurt = true
-	print("tomou dano " , dano_atual)
 
 	if isCrit:
 		finalDamage *= 2.0
 		print("Tomou Critico")
+		
+		var blood = blood_effect.instantiate()
+		blood.global_position = global_position
+		if attacker_pos.x > global_position.x:
+			blood.direction.x = -1 
+		else:
+			blood.direction.x = 1  
+		get_tree().current_scene.add_child(blood)
+
 		Engine.time_scale = 0.1
 		spriteChar.self_modulate = Color.BLACK 
 		
 		if xray:
 			xray.visible = true
 			xray.modulate.a = 0.0
-			
 			var tween_in = create_tween().set_ignore_time_scale(true)
 			tween_in.tween_property(xray, "modulate:a", 1.0, 0.15) 
 			
 		var cam = get_viewport().get_camera_2d()
-		
-		if cam and cam.has_method("tremer"):
+		if cam:
 			var intensidade_calculada = finalDamage / 5.0
-			cam.tremer(intensidade_calculada)
+			if cam.has_method("tremer"):
+				cam.tremer(intensidade_calculada)
+			if cam.has_method("crit_cam"):
+				cam.crit_cam()
+				
 		await get_tree().create_timer(0.5, true, false, true).timeout
-
+		
 		Engine.time_scale = 1.0
 		isZonzin = true
+		
 		var tween_out = get_tree().create_tween()
 		tween_out.set_parallel(true) 
-
 		tween_out.tween_property(spriteChar, "self_modulate", Color.WHITE, 0.3)
 
 		if xray:
 			tween_out.tween_property(xray, "modulate:a", 0.0, 0.3)
 			tween_out.chain().tween_callback(func(): xray.visible = false)
+			
+		knockback_crit(attacker_pos, 400.0)
 
 	health -= finalDamage
 	health_changed.emit(player_id, health)
+	
 	await delay(0.3)
 	gettingHurt = false
+	
 	if health <= 0:
 		die()
 
@@ -147,7 +162,7 @@ func energyGain(amount: float):
 		energyBar = energyMax
 
 func criticalDamage(danoBase: float) -> float:
-	var chanceAcerto = 1.0
+	var chanceAcerto = 0.01
 	var mult = 2.0
 	
 	if randf() <= chanceAcerto:
@@ -177,6 +192,10 @@ func fightCombo():
 	if comboCount >= comboMaxCount:
 		resetCombo()
 
+func knockback_crit(attacker_global_position: Vector2, hit_stregth: float):
+	knockback_direction = (global_position - attacker_global_position).normalized()
+	knockback_stregth = hit_stregth
+	
 func knockback(attacker_global_position: Vector2, hit_stregth: float):
 	knockback_direction = (global_position - attacker_global_position).normalized()
 	knockback_stregth = hit_stregth

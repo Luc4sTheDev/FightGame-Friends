@@ -562,8 +562,7 @@ limit_right = 300
 limit_bottom = 100
 script = ExtResource("1_vnny2")
 min_zoom = 3.0
-max_zoom = 4.0
-margin = Vector2(200, 300)
+max_zoom = 3.0
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1668848935]
 tile_set = SubResource("TileSet_lkege")
